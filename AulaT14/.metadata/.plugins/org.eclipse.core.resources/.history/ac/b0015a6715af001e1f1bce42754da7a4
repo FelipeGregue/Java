@@ -1,0 +1,44 @@
+package manipulararquivo;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Exercicio {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome do arquivo: ");
+        String nomeArquivo = scanner.nextLine();
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo));
+            while (true) {
+                System.out.print("Digite uma linha de texto (ou deixe em branco para encerrar): ");
+                String linha = scanner.nextLine();
+                if (linha.isEmpty()) {
+                    break;
+                }
+                writer.write(linha);
+                writer.newLine();
+            }
+
+            writer.close();
+
+            System.out.println("Arquivo criado com sucesso!");
+
+            System.out.println("Conteúdo do arquivo:");
+
+            scanner = new Scanner(new FileReader(nomeArquivo));
+            while (fileScanner.hasNextLine()) {
+                System.out.println(fileScanner.nextLine());
+            }
+
+            fileScanner.close();
+        } catch (IOException e) {
+            System.err.println("Erro ao criar ou manipular o arquivo: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}
